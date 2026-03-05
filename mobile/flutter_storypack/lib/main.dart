@@ -10,6 +10,7 @@ import 'screens/editor_screen.dart';
 import 'screens/library_screen.dart';
 import 'services/story_service.dart';
 import 'services/settings_service.dart';
+import 'services/native_channel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,9 @@ void main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+
+  // Initialize native channel
+  NativeChannelService().initialize();
 
   runApp(const WebHatApp());
 }
