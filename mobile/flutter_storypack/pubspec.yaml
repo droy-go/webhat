@@ -1,0 +1,63 @@
+name: webhat_private
+description: WebHat StoryPack - Mobile and desktop reader/editor for WebHat comics
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  archive: ^3.4.10
+  path_provider: ^2.1.1
+  shared_preferences: ^2.2.2
+  audioplayers: ^5.2.1
+  image_picker: ^1.0.7
+  file_picker: ^6.1.1
+  url_launcher: ^6.2.2
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+  json_annotation: ^4.8.1
+  freezed_annotation: ^2.4.1
+  cupertino_icons: ^1.0.6
+
+  # Desktop support
+  window_manager: ^0.3.7
+
+  # Platform specific
+  permission_handler: ^11.1.0
+
+  # UI
+  flutter_staggered_grid_view: ^0.7.0
+  cached_network_image: ^3.3.0
+
+  # State management
+  provider: ^6.1.1
+
+  # Navigation
+  go_router: ^12.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.7
+  json_serializable: ^6.7.1
+  freezed: ^2.4.5
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
