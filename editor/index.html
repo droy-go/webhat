@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebHat Editor</title>
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="editor-header">
+      <div class="header-left">
+        <h1 class="logo">WebHat Editor</h1>
+      </div>
+      <div class="header-center">
+        <span id="project-name" class="project-name">Untitled Project</span>
+      </div>
+      <div class="header-right">
+        <button id="new-btn" class="btn btn-secondary">New</button>
+        <button id="open-btn" class="btn btn-secondary">Open</button>
+        <button id="save-btn" class="btn btn-secondary">Save</button>
+        <button id="export-btn" class="btn btn-primary">Export .webhat</button>
+        <input type="file" id="open-input" accept=".webhat,.json" hidden>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="editor-main">
+      <!-- Left Sidebar - Project -->
+      <aside class="sidebar sidebar-left">
+        <div class="sidebar-section">
+          <h3>Chapters</h3>
+          <div id="chapter-list" class="item-list"></div>
+          <button id="add-chapter-btn" class="btn btn-small btn-add">+ Add Chapter</button>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Pages</h3>
+          <div id="page-list" class="item-list page-list"></div>
+          <button id="add-page-btn" class="btn btn-small btn-add">+ Add Page</button>
+        </div>
+      </aside>
+
+      <!-- Center - Canvas -->
+      <div class="canvas-area">
+        <div class="canvas-toolbar">
+          <div class="tool-group">
+            <button id="tool-select" class="tool-btn active" title="Select">↖</button>
+            <button id="tool-panel" class="tool-btn" title="Add Panel">□</button>
+            <button id="tool-bubble" class="tool-btn" title="Add Speech Bubble">💬</button>
+            <button id="tool-hotspot" class="tool-btn" title="Add Hotspot">⌖</button>
+          </div>
+          <div class="tool-group">
+            <button id="zoom-out" class="tool-btn" title="Zoom Out">−</button>
+            <span id="zoom-level">100%</span>
+            <button id="zoom-in" class="tool-btn" title="Zoom In">+</button>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <div id="canvas-container" class="canvas-container">
+            <div id="canvas" class="canvas">
+              <img id="canvas-image" class="canvas-image" alt="Page">
+              <div id="overlay-layer" class="overlay-layer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar - Properties -->
+      <aside class="sidebar sidebar-right">
+        <div class="sidebar-section">
+          <h3>Properties</h3>
+          <div id="properties-panel" class="properties-panel">
+            <p class="no-selection">Select an element to edit properties</p>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Story Info</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="story-title" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Author</label>
+            <input type="text" id="story-author" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="story-description" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Categories</label>
+            <select id="story-categories" class="form-select" multiple>
+              <option value="action">Action</option>
+              <option value="horror">Horror</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="scifi">Sci-Fi</option>
+              <option value="comedy">Comedy</option>
+              <option value="education">Education</option>
+              <option value="kids">Kids</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Audio</h3>
+          <div class="form-group">
+            <label>Background Music</label>
+            <input type="file" id="page-bgm" accept="audio/*" class="form-file">
+            <button id="remove-bgm" class="btn btn-small btn-danger hidden">Remove</button>
+          </div>
+          <div class="form-group">
+            <label>Sound Effects</label>
+            <input type="file" id="page-sfx" accept="audio/*" multiple class="form-file">
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Modals -->
+    <!-- New Project Modal -->
+    <div id="new-project-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>New Project</h2>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="new-title" class="form-input" placeholder="Story Title">
+        </div>
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" id="new-author" class="form-input" placeholder="Your Name">
+        </div>
+        <div class="modal-actions">
+          <button id="cancel-new" class="btn btn-secondary">Cancel</button>
+          <button id="confirm-new" class="btn btn-primary">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Chapter Modal -->
+    <div id="add-chapter-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Add Chapter</h2>
+        <div class="form-group">
+          <label>Chapter Title</label>
+          <input type="text" id="chapter-title" class="form-input" placeholder="Chapter Title">
+        </div>
+        <div class="modal-actions">
+          <button id="cancel-chapter" class="btn btn-secondary">Cancel</button>
+          <button id="confirm-chapter" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Page Modal -->
+    <div id="add-page-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Add Page</h2>
+        <div class="form-group">
+          <label>Page Image</label>
+          <input type="file" id="page-image-input" accept="image/*" class="form-file">
+        </div>
+        <div class="modal-actions">
+          <button id="cancel-page" class="btn btn-secondary">Cancel</button>
+          <button id="confirm-page" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speech Bubble Modal -->
+    <div id="bubble-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Edit Speech Bubble</h2>
+        <div class="form-group">
+          <label>Text</label>
+          <textarea id="bubble-text" class="form-textarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Character</label>
+          <input type="text" id="bubble-character" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Style</label>
+          <select id="bubble-style" class="form-select">
+            <option value="speech">Speech</option>
+            <option value="thought">Thought</option>
+            <option value="narration">Narration</option>
+            <option value="shout">Shout</option>
+            <option value="whisper">Whisper</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button id="delete-bubble" class="btn btn-danger">Delete</button>
+          <button id="cancel-bubble" class="btn btn-secondary">Cancel</button>
+          <button id="confirm-bubble" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
