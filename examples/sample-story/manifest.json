@@ -1,0 +1,19 @@
+{
+  "format_version": "1.0.0",
+  "id": "com.example.adventure",
+  "title": "The Adventure Begins",
+  "description": "A sample interactive comic demonstrating WebHat features",
+  "author": "WebHat Team",
+  "version": "1.0.0",
+  "created_at": "2024-01-15T10:00:00Z",
+  "updated_at": "2024-01-15T10:00:00Z",
+  "categories": ["fantasy", "adventure"],
+  "tags": ["demo", "interactive", "sample"],
+  "language": "en",
+  "rating": "everyone",
+  "pages_count": 3,
+  "has_audio": false,
+  "has_interactions": true,
+  "cover_image": "icons/cover.png",
+  "thumbnail": "icons/thumbnail.png"
+}
