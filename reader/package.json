@@ -1,0 +1,20 @@
+{
+  "name": "webhat-reader",
+  "version": "1.0.0",
+  "description": "Web-based reader for WebHat interactive comics",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  }
+}
