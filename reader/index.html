@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebHat Reader</title>
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="reader-header">
+      <div class="header-left">
+        <h1 class="logo">WebHat Reader</h1>
+      </div>
+      <div class="header-center">
+        <span id="story-title" class="story-title"></span>
+      </div>
+      <div class="header-right">
+        <button id="open-file-btn" class="btn btn-primary">Open .webhat</button>
+        <input type="file" id="file-input" accept=".webhat" hidden>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="reader-main">
+      <!-- Welcome Screen -->
+      <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+          <h2>Welcome to WebHat Reader</h2>
+          <p>Open a .webhat file to start reading</p>
+          <button id="welcome-open-btn" class="btn btn-large btn-primary">Open Story</button>
+        </div>
+      </div>
+
+      <!-- Reader View -->
+      <div id="reader-view" class="reader-view hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <h3>Chapters</h3>
+          </div>
+          <div id="chapter-list" class="chapter-list"></div>
+        </aside>
+
+        <!-- Page Viewer -->
+        <div class="page-container">
+          <div id="page-wrapper" class="page-wrapper">
+            <img id="page-image" class="page-image" alt="Comic Page">
+            <div id="speech-bubbles" class="speech-bubbles"></div>
+            <div id="interactions" class="interactions"></div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="page-navigation">
+            <button id="prev-btn" class="nav-btn" disabled>
+              <span class="icon">←</span> Previous
+            </button>
+            <span id="page-indicator" class="page-indicator">Page 0 / 0</span>
+            <button id="next-btn" class="nav-btn" disabled>
+              Next <span class="icon">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Audio Controls -->
+    <div id="audio-controls" class="audio-controls hidden">
+      <button id="audio-toggle" class="audio-btn">
+        <span id="audio-icon">🔊</span>
+      </button>
+      <input type="range" id="volume-slider" min="0" max="100" value="70">
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+      <p>Loading story...</p>
+    </div>
+
+    <!-- Zoom Controls -->
+    <div id="zoom-controls" class="zoom-controls hidden">
+      <button id="zoom-out" class="zoom-btn">−</button>
+      <span id="zoom-level">100%</span>
+      <button id="zoom-in" class="zoom-btn">+</button>
+      <button id="zoom-reset" class="zoom-btn">⟲</button>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
